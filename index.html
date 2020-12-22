@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="main.css">
+    
+    <title>Document</title>
+</head>
+<body>
+    <!-- testuser@todo.com -->
+    <div id=login>
+        <h1>Login page</h1>
+        <form>
+            <p>Email</p>
+            <input type="text" name="email" id="email" required placeholder="Enter your email" pattern="/@/"></br>
+            <h6 class="wrongValue">Wrong email</h6>
+            <p>Password</p>
+            <input type="password" name="password" required id="password" maxlength="12" placeholder="Enter your password, 8min, 12max"></br>
+            <h6 class="wrongValue">Wrong password</h6></br>
+            <button type="button" id="submit" onclick="login()">Login</button>
+        </form>
+    </div>
+    <div id=todo>
+        <h1>TODO LIST</h1>
+        <div id="divNewTodo"><input type="text" name="newTodo" id="newTodo" required placeholder="Task" maxlength="100"><button type="button" id="addNewTodo" onclick="addTodo()">ADD</button></div>
+        <div id="navigate">
+            <div class="firstLine">
+                <button id='sortByDateInc' onclick="sortByDateInc()"><</button></br>
+                <button id='sortByDateDec' onclick="sortByDateDec()">></button>
+            </div>
+            <div class="firstLine">
+                <button id='sortByPriorityInc' onclick="sortByPriorityInc()" ><</button></br>
+                <button id='sortByPriorityDec' onclick="sortByPriorityDec()">></button>
+            </div>
+            <div><input id='search' type="text" oninput ="search()" placeholder="search"></div>
+            <div><button id='sortByDoneDec' onclick="sortByDoneDec()">Y</button></div>
+        </div>
+        <div id="presenter"></div>
+    </div>
+    <div id=modalDelete>
+        <p>Delete item?</p>
+        <button onclick="showTodo()">no</button>
+        <button id="deleteItem">yes</button>
+
+    </div>
+    <div id=modalEdit>
+        <p>Edit text</p>
+        <input type="text" name="editTodo" id="editTodo" required maxlength="100" placeholder="New text of todo item ..."></br>
+        <button onclick="showTodo()">cansel</button>
+        <button id="editItem">save</button>
+    </div>
+<script src="main.js"></script>
+</body>
+</html>

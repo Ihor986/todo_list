@@ -1,0 +1,131 @@
+/* #login {
+  display: none;
+} */
+#todo {
+  display: none;
+}
+#modalDelete {
+  display: none;
+}
+#modalEdit {
+  display: none;
+}
+#submit {
+  margin-top: 5%;
+  background-color: royalblue;
+}
+.wrongValue {
+  display: none;
+  color: red;
+}
+#login input {
+  width: 250px;
+}
+#navigate {
+  margin-top: 50px;
+  display: flex;
+}
+#navigate div {
+  margin-left: 30px;
+}
+#navigate input {
+  margin-left: 100px;
+  width: 600px;
+}
+.todoBlock {
+  display: flex;
+}
+#presenter div {
+  margin: 5px;
+}
+#newTodo {
+  width: 80%;
+  outline: none;
+  border: none;
+  border: solid 1px #f2f2f2;
+  margin-right: 10%;
+  margin-left: 30px;
+}
+.taskBlock {
+  width: 80%;
+  outline: none;
+  border: none;
+  border: solid 1px #f2f2f2;
+  margin-right: 10%;
+  margin-left: 10px;
+  text-decoration: none;
+}
+.doneTaskBlock {
+  width: 80%;
+  outline: none;
+  border: none;
+  border: solid 1px #f2f2f2;
+  margin-right: 10%;
+  margin-left: 10px;
+  text-decoration: line-through;
+}
+
+#addNewTodo {
+  background-color: blue;
+  border-radius: 10%;
+  width: 5%;
+}
+.firstLine {
+  width: 5%;
+}
+.dateTimeBlock {
+  width: 10%;
+  overflow: hidden;
+}
+.priorityBlock {
+  width: 5%;
+  margin-right: 0px;
+}
+.priorityChangeBlock button {
+  margin-left: 0px;
+  width: 50%;
+  overflow: hidden;
+}
+#search {
+  width: 80%;
+  outline: none;
+  border: none;
+  border: solid 1px #f2f2f2;
+  margin-right: 10%;
+  margin-left: 30px;
+}
+#sortByDoneDec {
+  margin-left: 260px;
+}
+.editBlock {
+  border-radius: 100%;
+  width: 70px;
+  overflow: hidden;
+}
+.isntDoneBlock {
+  border-radius: 100%;
+  width: 70px;
+  overflow: hidden;
+  background-color: blue;
+}
+.isDoneBlock {
+  border-radius: 100%;
+  width: 70px;
+  overflow: hidden;
+  background-color: gray;
+}
+.isdeleteBlock {
+  border-radius: 100%;
+  width: 70px;
+  overflow: hidden;
+}
+#deleteItem {
+  background-color: blue;
+}
+#editItem {
+  background-color: blue;
+}
+#editTodo {
+  width: 80%;
+  margin-bottom: 10px;
+}
