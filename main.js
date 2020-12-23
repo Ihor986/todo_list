@@ -61,8 +61,8 @@ function showTodo() {
     pageRefresh();  
 } 
 function login() {
-    showTodo();
-    return;
+    // showTodo();
+    // return;
     const log = document.querySelector('#email'); 
     const pass = document.querySelector('#password'); 
     sortByDoneDec();
