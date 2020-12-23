@@ -5,11 +5,13 @@ const docTodo = document.querySelector('#todo');
 const docModalEdit = document.querySelector('#modalEdit');
 const docoMdalDelete = document.querySelector('#modalDelete');
 const wrongValue = document.querySelectorAll('.wrongValue');
+const wrongTaskValue = document.querySelector('.wrongTaskValue');
 const presenter = document.querySelector('#presenter');
 const searchRequest = document.querySelector('#search');
 const emailValue = document.querySelector('#email');
 const passlValue = document.querySelector('#password');
 const updatedTodoTask = document.querySelector('#editTodo');
+const newTodoTask = document.querySelector('#newTodo');
 const log = document.querySelector('#email'); 
 const pass = document.querySelector('#password'); 
 let todoList = JSON.parse(localStorage.getItem("todoList")) || [];
@@ -60,31 +62,37 @@ function pageRefresh() {
 }
 function showTodo() {
     todoInline();
+    todoList.sort((a, b) => a.id > b.id ? 1 : -1);
+    todoList.sort((a, b) => a.priority > b.priority ? 1 : -1);
     pageRefresh();  
 } 
 function login() {
     // showTodo();
     // return;
-    todoList.sort((a, b) => a.id > b.id ? 1 : -1);
     log.value === adminLog & pass.value === adminPass ? showTodo() : wrongValueInline();
     log.value = '';
     pass.value = '';
 }
 function addTodo() {
-    const newTodo = {
+    if (newTodoTask.value !== '') {
+        const newTodo = {
         id: new Date().getTime(),
         date: (new Date()).toLocaleDateString().split("/"),
         time: (new Date()).toLocaleTimeString().slice(0,5).split("/"),
         priority:1,
-        task: document.querySelector('#newTodo').value,
+        task: newTodoTask.value,
         isDone: false,
     };
-    todoList.push(newTodo);
+    todoList.unshift(newTodo);
     setItemToLS();
     clearInputs();
-    document.querySelector('#newTodo').value = '';
-    searchRequest.value = '';
-    appEndNewTodo(newTodo);
+    showTodo(newTodo);
+    } else {  
+    wrongTaskValue.style.display = 'inline';
+    setTimeout(function(){
+    wrongTaskValue.style.display = 'none';
+    },2000);
+    }  
 }
 function clearInputs() {
     document.querySelector('#newTodo').value = '';
@@ -185,9 +193,14 @@ function appEndNewTodo (newTodo) {
     editBlock.onclick = function () { 
         modalEditInline();
         document.querySelector('#editItem').onclick = function () {
+            if (updatedTodoTask.value != '') {
             newTodo.task = updatedTodoTask.value;
             setItemToLS();
-            showTodo();    
+            showTodo(); 
+            } else {
+                showTodo();
+            }
+   
         }
     }
     function doneChangeAttribute() {

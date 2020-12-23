@@ -18,6 +18,11 @@
   display: none;
   color: red;
 }
+.wrongTaskValue {
+  margin-left: 100px;
+  display: none;
+  color: red;
+}
 #login input {
   width: 250px;
 }
