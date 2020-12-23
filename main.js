@@ -10,6 +10,8 @@ const searchRequest = document.querySelector('#search');
 const emailValue = document.querySelector('#email');
 const passlValue = document.querySelector('#password');
 const updatedTodoTask = document.querySelector('#editTodo');
+const log = document.querySelector('#email'); 
+const pass = document.querySelector('#password'); 
 let todoList = JSON.parse(localStorage.getItem("todoList")) || [];
 emailValue.onfocus = function () {
     wrongValue[0].style.display = 'none';
@@ -63,9 +65,7 @@ function showTodo() {
 function login() {
     // showTodo();
     // return;
-    const log = document.querySelector('#email'); 
-    const pass = document.querySelector('#password'); 
-    sortByDoneDec();
+    todoList.sort((a, b) => a.id > b.id ? 1 : -1);
     log.value === adminLog & pass.value === adminPass ? showTodo() : wrongValueInline();
     log.value = '';
     pass.value = '';
