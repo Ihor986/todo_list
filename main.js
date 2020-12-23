@@ -9,13 +9,14 @@ const presenter = document.querySelector('#presenter');
 const searchRequest = document.querySelector('#search');
 const emailValue = document.querySelector('#email');
 const passlValue = document.querySelector('#password');
+const newTodoTask = document.querySelector('#editTodo');
+let todoList = JSON.parse(localStorage.getItem("todoList")) || [];
 emailValue.onfocus = function () {
     wrongValue[0].style.display = 'none';
 }
 passlValue.onfocus = function () {
     wrongValue[1].style.display = 'none';
 }
-let todoList = JSON.parse(localStorage.getItem("todoList")) || [];
 function setItemToLS() {
     localStorage.setItem("todoList", JSON.stringify(todoList));
 }
@@ -32,6 +33,7 @@ function todoInline() {
     docoMdalDelete.style.display = 'none';
 }
 function modalEditInline() {
+    newTodoTask.value = '';
     docLogin.style.display = 'none';
     docTodo.style.display = 'none';
     docModalEdit.style.display = 'inline';
@@ -56,15 +58,14 @@ function pageRefresh() {
 }
 function showTodo() {
     todoInline();
-    pageRefresh();
-    
+    pageRefresh();  
 } 
 function login() {
-    // showTodo();
-    // return;
+    showTodo();
+    return;
     const log = document.querySelector('#email'); 
     const pass = document.querySelector('#password'); 
-    todoList.sort((a, b) => a.id > b.id ? 1 : -1);
+    sortByDoneDec();
     log.value === adminLog & pass.value === adminPass ? showTodo() : wrongValueInline();
     log.value = '';
     pass.value = '';
@@ -89,7 +90,39 @@ function clearInputs() {
     document.querySelector('#newTodo').value = '';
     searchRequest.value = '';
 }
-
+function sortByDateInc() {   
+    todoList.sort((a, b) => a.id > b.id ? 1 : -1);
+    pageRefresh();
+}
+function sortByDateDec() {
+    todoList.sort((a, b) => a.id > b.id ? -1 : 1);
+    pageRefresh();
+}
+function sortByPriorityInc() {
+    todoList.sort((a, b) => a.isDone > b.isDone ? -1 : 1);
+    todoList.sort((a, b) => a.priority > b.priority ? 1 : -1);
+    pageRefresh();
+}
+function sortByPriorityDec() {
+    todoList.sort((a, b) => a.isDone > b.isDone ? 1 : -1);
+    todoList.sort((a, b) => a.priority > b.priority ? -1 : 1);
+    pageRefresh();
+}
+function sortByDoneDec() {
+    todoList.sort((a, b) => a.id > b.id ? -1 : 1);
+    todoList.sort((a, b) => a.priority > b.priority ? -1 : 1);
+    todoList.sort((a, b) => a.isDone > b.isDone ? 1 : -1);
+    pageRefresh();
+}
+function search() {
+    presenter.innerHTML = '';
+    const request = searchRequest.value;
+    for (const todo of todoList) {
+        if (todo.task.toLowerCase().includes(request.toLowerCase())) {
+                appEndNewTodo(todo);
+        }   
+    }
+}
 function appEndNewTodo (newTodo) {
     const todoBlock = document.createElement('div');
     todoBlock.setAttribute('class', 'todoBlock');
@@ -152,7 +185,7 @@ function appEndNewTodo (newTodo) {
     editBlock.onclick = function () { 
         modalEditInline();
         document.querySelector('#editItem').onclick = function () {
-            newTodo.task = document.querySelector('#editTodo').value;
+            newTodo.task = newTodoTask.value;
             setItemToLS();
             showTodo();    
         }
@@ -203,40 +236,5 @@ function appEndNewTodo (newTodo) {
         setItemToLS();
         showTodo();
         }
-    }    
-    
-}
-// showTodo();
-function sortByDateInc() {   
-    todoList.sort((a, b) => a.id > b.id ? 1 : -1);
-    pageRefresh();
-}
-function sortByDateDec() {
-    todoList.sort((a, b) => a.id > b.id ? -1 : 1);
-    pageRefresh();
-}
-function sortByPriorityInc() {
-    todoList.sort((a, b) => a.isDone > b.isDone ? -1 : 1);
-    todoList.sort((a, b) => a.priority > b.priority ? 1 : -1);
-    pageRefresh();
-}
-function sortByPriorityDec() {
-    todoList.sort((a, b) => a.isDone > b.isDone ? 1 : -1);
-    todoList.sort((a, b) => a.priority > b.priority ? -1 : 1);
-    pageRefresh();
-}
-function sortByDoneDec() {
-    todoList.sort((a, b) => a.id > b.id ? -1 : 1);
-    todoList.sort((a, b) => a.priority > b.priority ? -1 : 1);
-    todoList.sort((a, b) => a.isDone > b.isDone ? 1 : -1);
-    pageRefresh();
-}
-function search() {
-    presenter.innerHTML = '';
-    const request = searchRequest.value;
-    for (const todo of todoList) {
-        if (todo.task.toLowerCase().includes(request.toLowerCase())) {
-                appEndNewTodo(todo);
-        }   
-    }
+    }       
 }
