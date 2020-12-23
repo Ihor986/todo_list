@@ -9,7 +9,7 @@ const presenter = document.querySelector('#presenter');
 const searchRequest = document.querySelector('#search');
 const emailValue = document.querySelector('#email');
 const passlValue = document.querySelector('#password');
-const newTodoTask = document.querySelector('#editTodo');
+const updatedTodoTask = document.querySelector('#editTodo');
 let todoList = JSON.parse(localStorage.getItem("todoList")) || [];
 emailValue.onfocus = function () {
     wrongValue[0].style.display = 'none';
@@ -33,7 +33,7 @@ function todoInline() {
     docoMdalDelete.style.display = 'none';
 }
 function modalEditInline() {
-    newTodoTask.value = '';
+    updatedTodoTask.value = '';
     docLogin.style.display = 'none';
     docTodo.style.display = 'none';
     docModalEdit.style.display = 'inline';
@@ -185,7 +185,7 @@ function appEndNewTodo (newTodo) {
     editBlock.onclick = function () { 
         modalEditInline();
         document.querySelector('#editItem').onclick = function () {
-            newTodo.task = newTodoTask.value;
+            newTodo.task = updatedTodoTask.value;
             setItemToLS();
             showTodo();    
         }
